@@ -1,0 +1,41 @@
+name: pram-visual
+display_name: PRAM visualization
+contributions:
+  commands:
+    - id: pram-visual.get_reader
+      python_name: visualize._reader:napari_get_reader
+      title: Open data with PRAM visualization
+    # - id: pram-visual.write_multiple
+    #   python_name: visualize._writer:write_multiple
+    #   title: Save multi-layer data with PRAM visualization
+    - id: pram-visual.write_single_image
+      python_name: visualize._writer:write_single_image
+      title: Save labels data with PRAM visualization
+    - id: pram-visual.make_qwidget
+      python_name: visualize._widget:SegmentationDiffHighlight
+      title: Make segmentation by threshold wigdet
+    - id: pram-visual.make_magic_widget
+      python_name: visualize._widget:segment_by_threshold
+      title: Make example magic widget
+    # - id: pram-visual.make_func_widget
+    #   python_name: visualize._widget:ExampleQWidget
+    #   title: Make example QWidget
+  readers:
+    - command: pram-visual.get_reader
+      accepts_directories: true
+      filename_patterns: []
+  writers:
+    # - command: pram-visual.write_multiple
+    #   layer_types: ['image*','labels*']
+    #   filename_extensions: []
+    - command: pram-visual.write_single_image
+      layer_types: ['labels']
+      filename_extensions: ['.zip']
+  widgets:
+    - command: pram-visual.make_qwidget
+      display_name: Example QWidget
+    - command: pram-visual.make_magic_widget
+      display_name: Segment by Threshold
+    # - command: pram-visual.make_func_widget
+    #   autogenerate: true
+    #   display_name: Example Function Widget
